@@ -112,6 +112,7 @@ def calculate_parameters(spam, ham, vocabulary, constants, alpha=1):
 
 
 def classify(comment, constants, spam_parameters, ham_parameters):
+    label = ''
     # check input validity
     if type(comment) is not str:
         print("Invalid input!")
@@ -135,14 +136,16 @@ def classify(comment, constants, spam_parameters, ham_parameters):
             p_ham_given_message *= ham_parameters[word]
 
     if p_spam_given_message > p_ham_given_message:
-        print("Spam")
+        label = '1'
     elif p_spam_given_message < p_ham_given_message:
-        print("Ham")
+        label = '0'
     else:
-        print("Equal probabilities!")
+        label = "Equal probabilities!"
 
-    print(f"Probability of spam: {p_spam_given_message}")
-    print(f"Probability of ham: {p_ham_given_message}")
+    return label
+
+    # print(f"Probability of spam: {p_spam_given_message}")
+    # print(f"Probability of ham: {p_ham_given_message}")
 
 
 if __name__ == "__main__":
@@ -153,4 +156,5 @@ if __name__ == "__main__":
     constants = calculate_constants(spam, ham, vocabulary, train_data)
     spam_parameters, ham_parameters = calculate_parameters(spam, ham, vocabulary, constants)
 
-    classify("Check out my channel", constants, spam_parameters, ham_parameters)
+    # classify("Subscribe to my channel", constants, spam_parameters, ham_parameters)
+    print(clean_data)
